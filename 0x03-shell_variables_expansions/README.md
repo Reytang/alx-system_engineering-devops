@@ -44,4 +44,4 @@ Write a shell script that adds the two numbers stored in the environment variabl
 
 WATER is in base water
 STIR is in base stir.
-The result should be in base behlnortthis is a file to store my solutions
+The result should be in base bestchol is a file to store my solutions
