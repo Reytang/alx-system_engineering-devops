@@ -1,11 +1,22 @@
 #!/usr/bin/env bash
 # returns a custom header on request
 
-apt-get -y update
-apt-get -y install nginx
+sudo apt-get update
+sudo apt-get install -y nginx
 
-sed -i "47i\\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
-echo "Hello World!" | tee /var/www/html/index.html
-echo "Ceci n'est pas une page" > /var/www/html/404.html
+#creating an index page
+echo "Hello world!" | sudo tee /var/www/html/index.html
+# redirection
 
-service nginx start
+string_variable="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/Reytang permanent;"
+
+sudo sed -i "s/server_name _;/$string_variable/" /etc/nginx/sites-enabled/default
+
+#errorpage
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/default
+
+sudo sed -i "server_name _;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
+
+sudo nginx -t
+sudo service nginx restart
