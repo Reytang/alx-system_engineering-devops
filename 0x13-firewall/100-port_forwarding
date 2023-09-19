@@ -58,7 +58,6 @@ COMMIT
 
 # if MULTICAST, RETURN
 -A ufw-not-local -m addrtype --dst-type MULTICAST -j RETURN
-
 # if BROADCAST, RETURN
 -A ufw-not-local -m addrtype --dst-type BROADCAST -j RETURN
 
@@ -76,3 +75,5 @@ COMMIT
 
 # don't delete the 'COMMIT' line or these rules won't be processed
 COMMIT
+
+
